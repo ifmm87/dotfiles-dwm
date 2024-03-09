@@ -202,6 +202,7 @@ static const Key keys[] = {
   { MODKEY,XK_bracketright,spawn,{.v = (const char*[]){ "mpc", "seek", "+10", NULL } } },
   { MODKEY|ShiftMask,XK_bracketright,spawn,{.v = (const char*[]){ "mpc", "seek", "+60", NULL } } },
   { MODKEY|ShiftMask,                     XK_n,                           spawn,                     SHCMD("nightmode") },
+  { MODKEY|ShiftMask,                     XK_w,                           spawn,                     SHCMD("dwifi") },
   { MODKEY|ShiftMask,                     XK_y,                           spawn,                     SHCMD("clipmenu") },
   { MODKEY|ShiftMask,                     XK_e,                           spawn,                     SHCMD("wg") },
   { MODKEY|ControlMask,                   XK_e,                           spawn,                     SHCMD("emoji") },
