@@ -9,13 +9,13 @@ static const char *colorname[NUMCOLS] = {
 };
 
 /* lock screen opacity */
-static const float alpha = 0.5;
+static const float alpha = 0.6;
 
 /* treat a cleared input like a wrong password (color) */
 static const int failonclear = 1;
 
 /* default message */
-static const char * message = "Enter password to unlock";
+static const char * message = "Enter password to unlock dude";
 
 /* text color */
 static const char * text_color = "#abb2bf";

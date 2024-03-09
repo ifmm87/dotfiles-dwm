@@ -5,6 +5,8 @@ void exitdwm ()
 {
 # if							   \
 	defined S_LOCK				|| \
+	defined S_HIBERNATE				|| \
+	defined S_SUSPEND				|| \
 	defined S_RESTART_DWM		|| \
 	defined S_OFFSCREEN			|| \
 	defined S_EXIT				|| \
@@ -22,12 +24,16 @@ void exitdwm ()
 # endif
 
 # define S_LOCK "Lock"
+# define S_HIBERNATE "Hibernate"
+# define S_SUSPEND "Suspend"
 # define S_RESTART_DWM "Restart DWM"
 # define S_OFFSCREEN "Off-screen"
 # define S_EXIT "Exit"
 # define S_REBOOT "Reboot"
 # define S_SHUTDOWN "Shutdown"
 # define S_LOCK_ICON "\uf023"			// <= FontAwesome icons
+# define S_HIBERNATE_ICON "\uf023"			// <= FontAwesome icons
+# define S_SUSPEND_ICON "\uf023"			// <= FontAwesome icons
 # define S_RESTART_DWM_ICON "\uf01e"
 # define S_OFFSCREEN_ICON "󰍹"
 # define S_EXIT_ICON "󰿅"
@@ -40,6 +46,8 @@ void exitdwm ()
 	FILE * exit_menu = popen (
 		"echo \""
 			S_FORMAT (LOCK) "\n"
+			S_FORMAT (HIBERNATE) "\n"
+			S_FORMAT (SUSPEND) "\n"
 			S_FORMAT (RESTART_DWM) "\n"
 			S_FORMAT (OFFSCREEN) "\n"
 			S_FORMAT (EXIT) "\n"
@@ -61,6 +69,8 @@ void exitdwm ()
 	}
 
 	if (strcmp (exit_action, S_LOCK) == 0) system ("betterlockscreen -l & sleep .5; xset dpms force off");
+	else if (strcmp (exit_action, S_HIBERNATE) == 0) system ("betterlockscreen -l & sleep .5 & systemctl hibernate");
+	else if (strcmp (exit_action, S_SUSPEND) == 0) system ("betterlockscreen -l & sleep .5 & systemctl suspend");
 	else if (strcmp (exit_action, S_RESTART_DWM) == 0) quit (& (const Arg) {1});
 	else if (strcmp (exit_action, S_OFFSCREEN) == 0) system ("sleep .5; xset dpms force off");
 	else if (strcmp (exit_action, S_EXIT) == 0) system ("pkill x");

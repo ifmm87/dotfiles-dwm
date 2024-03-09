@@ -13,13 +13,6 @@ user=$(whoami)
 clear
 echo ""
 echo ""
-echo " █████╗ ███████╗ ██████╗ ███╗   ██╗  ██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗" 
-echo "██╔══██╗██╔════╝██╔═══██╗████╗  ██║  ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝"
-echo "███████║█████╗  ██║   ██║██╔██╗ ██║  ██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗"
-echo "██╔══██║██╔══╝  ██║   ██║██║╚██╗██║  ██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║"
-echo "██║  ██║███████╗╚██████╔╝██║ ╚████║  ██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║"
-echo "╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝  ╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝"
-echo "                              https://github.com/seeingangelz"
 echo ""
 echo "Installing programs..."
 echo "Already have yay installed? (y/n)"
@@ -30,7 +23,7 @@ case $answer in
   [Yy]*)
     echo "Installing programs..."
     yay -S cava devour exa tty-clock-git picom-simpleanims-next-git cmatrix-git pipes.sh npm checkupdates+aur xdotool xautolock betterlockscreen yad libnotify wal-telegram-git python-pywalfox xsettingsd themix-gui-git themix-theme-oomox-git archdroid-icon-theme tesseract-data-eng tesseract-data-por slop arandr clipmenu zsh cmus mpd mpc ncmpcpp playerctl dbus simple-mtpfs dunst emacs feh ffmpeg ffmpegthumbnailer firefox flameshot fzf git gnu-free-fonts go gd btop imagemagick mpv neofetch neovim noto-fonts noto-fonts-cjk noto-fonts-emoji numlockx obs-studio openssh perl pulseaudio pulsemixer udiskie python-pip python-pywal qalculate-gtk xdg-user-dirs qutebrowser ranger syncthing sxiv telegram-desktop tree ttf-jetbrains-mono-nerd ttf-font-awesome gpick ueberzugpp redshift p7zip unzip epub-thumbnailer-git python-pdftotext poppler vim webkit2gtk xclip yt-dlp zathura zathura-pdf-mupdf zip xorg-server xorg-xinit libx11 libxinerama libxft base base-devel --noconfirm
-    sudo pywalfox install
+    sudo pywalfox install mpc mpd tmux neovim
     sleep 1 && clear
     ;;
   [Nn]*)
@@ -42,7 +35,7 @@ case $answer in
 
     echo "Installing programs..."
     yay -S cava devour exa tty-clock-git picom-simpleanims-next-git cmatrix-git pipes.sh npm checkupdates+aur xdotool xautolock betterlockscreen yad libnotify wal-telegram-git python-pywalfox xsettingsd themix-gui-git themix-theme-oomox-git archdroid-icon-theme tesseract-data-eng tesseract-data-por slop arandr clipmenu zsh cmus mpd mpc ncmpcpp playerctl dbus simple-mtpfs dunst emacs feh ffmpeg ffmpegthumbnailer firefox flameshot fzf git gnu-free-fonts go gd btop imagemagick mpv neofetch neovim noto-fonts noto-fonts-cjk noto-fonts-emoji numlockx obs-studio openssh perl pulseaudio pulsemixer udiskie python-pip python-pywal qalculate-gtk xdg-user-dirs qutebrowser ranger syncthing sxiv telegram-desktop tree ttf-jetbrains-mono-nerd ttf-font-awesome gpick ueberzugpp redshift p7zip unzip epub-thumbnailer-git python-pdftotext poppler vim webkit2gtk xclip yt-dlp zathura zathura-pdf-mupdf zip xorg-server xorg-xinit libx11 libxinerama libxft base base-devel --noconfirm
-    sudo pywalfox install
+    sudo pywalfox install mpc mpd tmux neovim
     sleep 1 && clear
     ;;
   *)

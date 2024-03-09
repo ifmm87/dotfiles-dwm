@@ -25,6 +25,7 @@ else
     oomox-cli /opt/oomox/scripted_colors/xresources/xresources-reverse
     wal-telegram -t
     pywalfox update
+    betterlockscreen -u $SELECTED
     killall dunst && dunst &
 
     if [ "$window_manager" = "dwm" ]; then

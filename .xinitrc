@@ -11,6 +11,8 @@ picom &
 # Start dunst
 dunst &
 
+mpd &
+
 # Start dwmblocks
 dwmblocks &
 

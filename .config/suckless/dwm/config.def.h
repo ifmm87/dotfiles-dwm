@@ -1,5 +1,5 @@
 /* appearance */
-static unsigned int borderpx              = 2;   /* border pixel of windows */
+static unsigned int borderpx              = 3;   /* border pixel of windows */
 static unsigned int snap                  = 0;   /* snap pixel */
 static const unsigned int gappih          = 10;  /* horiz inner gap between windows */
 static const unsigned int gappiv          = 10;  /* vert inner gap between windows */
@@ -23,7 +23,7 @@ static const char buttonbar[]             = "";
 #define HIDEVACANT                          0    /* hide vacant tags */
 #define ICONSIZE                            10   /* icon size */
 #define ICONSPACING                         5    /* space between icon and title */
-static const char *fonts[]                = { "JetBrainsMono Nerd Font:style=Bold:size=10:antialias=true:autohint=true" };
+static const char *fonts[]                = { "JetBrainsMono Nerd Font:style=Bold:size=14:antialias=true:autohint=true" };
 static char normbgcolor[]                 = "#222222";
 static char normbordercolor[]             = "#444444";
 static char normfgcolor[]                 = "#bbbbbb";
@@ -35,7 +35,7 @@ static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3] = {
   /*                       fg           bg           border      */
   [SchemeNorm]     = { normfgcolor, normbgcolor, normbordercolor },
-  [SchemeSel]      = { selfgcolor,  selbgcolor,  normbordercolor },
+  [SchemeSel]      = { selfgcolor,  selbgcolor,  selbordercolor },
   [SchemeHid]      = { normfgcolor, normbgcolor, normbordercolor },
 };
 
@@ -174,7 +174,7 @@ ResourcePref resources[] = {
 
 static const Key keys[] = {
   /* modifier                             key                             function                   argument         */
-  { MODKEY,                               XK_p,                           spawn,                     {.v = dmenucmd } },
+  { MODKEY,                               XK_d,                           spawn,                     {.v = dmenucmd } },
   { MODKEY,                               XK_Return,                      spawn,                     {.v = termcmd } },
   { MODKEY|ControlMask,                   XK_Return,                      riospawn,                  {.v = termcmd } },
   { MODKEY|ControlMask,                   XK_s,                           rioresize,                 {0} },
@@ -189,11 +189,18 @@ static const Key keys[] = {
   { Mod1Mask,                             XK_F2,                          spawn,                     SHCMD("statusmic down") },
   { Mod1Mask,                             XK_F3,                          spawn,                     SHCMD("statusmic up") },
   { Mod1Mask,                             XK_z,                           spawn,                     SHCMD("statusmic mute") },
+  { Mod1Mask|ShiftMask,                   XK_z,                           spawn,                     SHCMD("dwall") },
   { 0,                                    XF86XK_MonBrightnessUp,         spawn,                     SHCMD("statusbrightness up") },
   { 0,                                    XF86XK_MonBrightnessDown,       spawn,                     SHCMD("statusbrightness down") },
   { 0,                                    XF86XK_AudioPlay,               spawn,                     SHCMD("playerctlstatus play-pause") },
   { 0,                                    XF86XK_AudioNext,               spawn,                     SHCMD("playerctlstatus next") },
   { 0,                                    XF86XK_AudioPrev,               spawn,                     SHCMD("playerctlstatus previous") },
+  { MODKEY,                               XK_p,                           spawn,                   {.v = (const char*[]){ "mpc", "toggle", NULL } } },
+  { MODKEY|ShiftMask,XK_p,spawn,SHCMD("mpc pause; pauseallmpv") },
+  { MODKEY,XK_bracketleft,spawn,{.v = (const char*[]){ "mpc", "seek", "-10", NULL } } },
+  { MODKEY|ShiftMask,XK_bracketleft,spawn,{.v = (const char*[]){ "mpc", "seek", "-60", NULL } } },
+  { MODKEY,XK_bracketright,spawn,{.v = (const char*[]){ "mpc", "seek", "+10", NULL } } },
+  { MODKEY|ShiftMask,XK_bracketright,spawn,{.v = (const char*[]){ "mpc", "seek", "+60", NULL } } },
   { MODKEY|ShiftMask,                     XK_n,                           spawn,                     SHCMD("nightmode") },
   { MODKEY|ShiftMask,                     XK_y,                           spawn,                     SHCMD("clipmenu") },
   { MODKEY|ShiftMask,                     XK_e,                           spawn,                     SHCMD("wg") },
@@ -201,15 +208,14 @@ static const Key keys[] = {
   { MODKEY|ShiftMask,                     XK_s,                           spawn,                     SHCMD("dfiles") },
   { MODKEY|ShiftMask,                     XK_d,                           spawn,                     SHCMD("dots") },
   { MODKEY,                               XK_b,                           togglebar,                 {0} },
-  { MODKEY,                               XK_Right,                       focusstackvis,             {.i = +1 } },
-  { MODKEY,                               XK_Left,                        focusstackvis,             {.i = -1 } },
+  { MODKEY,                               XK_j,                       focusstackvis,             {.i = +1 } },
+  { MODKEY,                               XK_k,                        focusstackvis,             {.i = -1 } },
   { MODKEY,                               XK_i,                           incnmaster,                {.i = +1 } },
-  { MODKEY,                               XK_d,                           incnmaster,                {.i = -1 } },
-  { MODKEY,                               XK_h,                           setmfact,                  {.f = -0.05} },
-  { MODKEY,                               XK_l,                           setmfact,                  {.f = +0.05} },
-  { MODKEY,                               XK_j,                           setcfact,                  {.f = +0.25} },
-  { MODKEY,                               XK_k,                           setcfact,                  {.f = -0.25} },
-  { MODKEY|ShiftMask,                     XK_o,                           setcfact,                  {.f =  0.00} },
+  { MODKEY|ControlMask,                   XK_h,                           setmfact,                  {.f = -0.05} },
+  { MODKEY|ControlMask,                   XK_l,                           setmfact,                  {.f = +0.05} },
+  { MODKEY|ControlMask,                   XK_j,                           setcfact,                  {.f = +0.25} },
+  { MODKEY|ControlMask,                   XK_k,                           setcfact,                  {.f = -0.25} },
+  { MODKEY|ControlMask,                   XK_o,                           setcfact,                  {.f =  0.00} },
   { MODKEY,                               XK_equal,                       incrogaps,                 {.i = +1 } },
   { MODKEY,                               XK_minus,                       incrogaps,                 {.i = -1 } },
   { MODKEY|ShiftMask,                     XK_equal,                       incrohgaps,                {.i = +1 } },
@@ -247,19 +253,19 @@ static const Key keys[] = {
   { MODKEY|ShiftMask,                     XK_Return,                      zoom,                      {0} },
   { MODKEY,                               XK_Tab,                         view,                      {0} },
   { MODKEY|ShiftMask,                     XK_q,                           killclient,                {0} },
-  { MODKEY,                               XK_t,                           setlayout,                 {.v = &layouts[0]} },
-  { MODKEY,                               XK_m,                           setlayout,                 {.v = &layouts[2]} },
-  { MODKEY,                               XK_f,                           setlayout,                 {.v = &layouts[3]} },
-  { MODKEY,                               XK_o,                           setlayout,                 {.v = &layouts[8]} },
-  { MODKEY,                               XK_u,                           setlayout,                 {.v = &layouts[12]} },
+  { MODKEY|ShiftMask,                     XK_t,                           setlayout,                 {.v = &layouts[0]} },
+  { MODKEY|ShiftMask,                     XK_m,                           setlayout,                 {.v = &layouts[2]} },
+  { MODKEY|ShiftMask,                     XK_f,                           setlayout,                 {.v = &layouts[3]} },
+  { MODKEY|ShiftMask,                     XK_o,                           setlayout,                 {.v = &layouts[8]} },
+  { MODKEY|ShiftMask,                     XK_u,                           setlayout,                 {.v = &layouts[12]} },
+  { MODKEY,                               XK_f,                           togglefullscr,             {0} },
   { MODKEY,                               XK_space,                       setlayout,                 {0} },
   { MODKEY|ShiftMask,                     XK_space,                       togglefloating,            {0} },
   { MODKEY,                               XK_s,                           togglesticky,              {0} },
-  { MODKEY,                               XK_comma,                       scratchpad_show,           {0} },
-  { MODKEY|ShiftMask,                     XK_comma,                       scratchpad_hide,           {0} },
-  { MODKEY,                               XK_period,                      scratchpad_remove,         {0} },
-  { MODKEY|ShiftMask,                     XK_comma,                       tagmon,                    {.i = -1 } },
-  { MODKEY|ShiftMask,                     XK_period,                      tagmon,                    {.i = +1 } },
+  { MODKEY,XK_comma,spawn,{.v = (const char*[]){ "mpc", "prev", NULL } } },
+  { MODKEY|ShiftMask,XK_comma,spawn,{.v = (const char*[]){ "mpc", "seek", "0%", NULL } } },
+  { MODKEY,XK_period,spawn,{.v = (const char*[]){ "mpc", "next", NULL } } },
+  { MODKEY|ShiftMask,XK_period,spawn,{.v = (const char*[]){ "mpc", "repeat", NULL } } },
   { MODKEY|ShiftMask,                     XK_Return,                      togglescratch,             {.ui = 0 } },
   { MODKEY,                               XK_F1,                          togglescratch,             {.ui = 1 } },
   { MODKEY,                               XK_F4,                          togglescratch,             {.ui = 2 } },
@@ -272,7 +278,9 @@ static const Key keys[] = {
   TAGKEYS(                                XK_3,                           2)
   TAGKEYS(                                XK_4,                           3)
   TAGKEYS(                                XK_5,                           4)
-  { MODKEY|ShiftMask,                     XK_p,                           exitdwm,                   {0} },
+  TAGKEYS(                                XK_6,                           5)
+  TAGKEYS(                                XK_7,                           6)
+  { MODKEY|ShiftMask,                     XK_x,                           exitdwm,                   {0} },
   { MODKEY|ShiftMask,                     XK_r,                           quit,                      {0} },
 };
 
