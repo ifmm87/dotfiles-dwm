@@ -16,3 +16,7 @@ EOF
 
 systemctl daemon-reload
 systemctl enable powertop.service
+
+# oh my zsh was not loading themes
+this solved it 
+yay -S grml-zsh-config
